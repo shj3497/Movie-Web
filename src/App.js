@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const foodILike = [
@@ -39,52 +39,55 @@ const foodILike = [
   }
 ];
 
-// function Food(props){
-//   return (
-//     <div>
-//       <h1>I Like {props.name} </h1>
-//       <img src={props.picture} alt="img" />
-//     </div>
-//     )
-// }
 
-// 객체 안에있는 변수를 직접 지정할 수도 있다.
-function Food({name, picture, rating}){
-  return (
-    <div>
-      <h1>I Like {name} </h1>
-      <h4>{rating}/5.0</h4>
-      <img src={picture} alt={name} />
-    </div>
-  )
-}
+class App extends Component {
+  constructor(){
+    super();
+    // 1
+    console.log("constructor");
+  };
 
-// TypeScript를 쓰면 propTypes를 안써도 되겠군, 대소문자 주의
-Food.propTypes = {
-  name: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired
-}
+  componentDidMount(){
+    // 3
+    console.log("componentDidMount")
+  }
 
-function renderFood(dish){
-  return (
-    <Food 
-      key={dish.id} 
-      name={dish.name} 
-      picture={dish.image} 
-      rating={dish.rating}
-    />
-    )
-}
+  componentDidUpdate(){
+    // render()가 다시 조회딜때마다 실행
+    console.log("componentDidUpdate")
+  }
 
-function App() {
-  return (
-    <div>
-      {
-        foodILike.map(renderFood)
-      }
-    </div>
-  );
+  state = {
+    count:0,
+  };
+
+  add = () => {
+    let count = this.state.count;
+    count++;
+    
+    this.setState({
+      count:count
+    })
+
+  };
+
+  minus = () => {
+    this.setState(current => ({
+      count: current.count - 1
+    }))
+  }
+
+  render() {
+    // 2
+    console.log('render')
+    return (
+      <div>
+        <h1>The number is {this.state.count} </h1>
+        <button onClick = {this.add}>Add</button>
+        <button onClick = {this.minus}>Minus</button>
+      </div>
+    );
+  }
 }
 
 export default App;
