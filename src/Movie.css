@@ -1,5 +1,6 @@
 .movies .movie {
-  background-color: white;
+  width: 45%;
+  background-color: whitesmoke;
   margin-bottom: 70px;
   font-weight: 300;
   padding: 20px;
