@@ -24,6 +24,10 @@ body,
   justify-content: center;
   align-items: center;
 }
+.loader__text {
+  color: white;
+  font-size: 2rem;
+}
 
 .movies {
   display: flex;
